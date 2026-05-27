@@ -1,0 +1,116 @@
+{
+  "template_name": "CJC-Templet_Word2003.docx",
+  "template_path": "skills/deep_research/assets/CJC-Templet_Word2003.docx",
+  "paragraph_count": 131,
+  "table_count": 1,
+  "section_count": 8,
+  "primary_section": {
+    "start_type": "CONTINUOUS",
+    "different_first_page_header_footer": true,
+    "page_width": 7559675,
+    "page_height": 10691495,
+    "left_margin": 720090,
+    "right_margin": 720090,
+    "top_margin": 935990,
+    "bottom_margin": 935990
+  },
+  "style_map": {
+    "title_cn": "Subtitle",
+    "authors_cn": "作者",
+    "affiliations_cn": "单位",
+    "abstract_cn": "摘要",
+    "keywords_cn": "关键词",
+    "classification_cn": "分类号",
+    "title_en": "Title1",
+    "authors_en": "Name",
+    "affiliations_en": "Depart.Correspond",
+    "abstract_en": "Abstract",
+    "keywords_en": "Key words",
+    "heading_1": "Heading 1",
+    "heading_2": "Heading 2",
+    "heading_3": "Heading 3",
+    "body": "Body Text",
+    "ack_heading": "致谢",
+    "reference_heading": "Normal",
+    "reference_cn_text": "Text of 中文参考文献",
+    "reference_en_text": "Text of Reference",
+    "appendix_heading": "Heading 1"
+  },
+  "content_order": [
+    {
+      "slot": "title_cn",
+      "style": "Subtitle",
+      "sample": "题目（中英文题目一致）"
+    },
+    {
+      "slot": "authors_cn",
+      "style": "作者",
+      "sample": "作者名"
+    },
+    {
+      "slot": "affiliations_cn",
+      "style": "单位",
+      "sample": "单位全名 部门(系)全名"
+    },
+    {
+      "slot": "abstract_cn",
+      "style": "摘要",
+      "sample": "摘  要"
+    },
+    {
+      "slot": "keywords_cn",
+      "style": "关键词",
+      "sample": "关键词"
+    },
+    {
+      "slot": "classification_cn",
+      "style": "分类号",
+      "sample": "中图法分类号"
+    },
+    {
+      "slot": "title_en",
+      "style": "Title1",
+      "sample": "Title"
+    },
+    {
+      "slot": "authors_en",
+      "style": "Name",
+      "sample": "NAME Name"
+    },
+    {
+      "slot": "affiliations_en",
+      "style": "Depart.Correspond",
+      "sample": "Department of ..."
+    },
+    {
+      "slot": "abstract_en",
+      "style": "Abstract",
+      "sample": "Abstract"
+    },
+    {
+      "slot": "keywords_en",
+      "style": "Key words",
+      "sample": "Key words"
+    },
+    {
+      "slot": "body",
+      "style": "Heading 1 / Heading 2 / Heading 3 / Body Text",
+      "sample": "正文章节"
+    },
+    {
+      "slot": "references",
+      "style": "Normal + Text of 中文参考文献 / Text of Reference",
+      "sample": "参 考 文 献"
+    },
+    {
+      "slot": "appendix",
+      "style": "Heading 1 + Body Text",
+      "sample": "附录"
+    }
+  ],
+  "notes": [
+    "脚本生成正式稿时会清空模板示例正文，但保留模板主版式 sectPr。",
+    "参考文献标题文本使用“参 考 文 献”，其段落样式在当前模板中为 Normal。",
+    "附录示例在原模板中使用 Normal，但生成稿统一使用 Heading 1 和 Body Text。"
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "template_name": "软件学报排版样例2025年版.docx",
+  "template_path": "skills/deep_research/assets/软件学报排版样例2025年版.docx",
+  "paragraph_count": 196,
+  "table_count": 3,
+  "section_count": 1,
+  "primary_section": {
+    "start_type": "CONTINUOUS",
+    "different_first_page_header_footer": true,
+    "page_width": 6624955,
+    "page_height": 9361170,
+    "left_margin": 521970,
+    "right_margin": 521970,
+    "top_margin": 360045,
+    "bottom_margin": 791845
+  },
+  "style_map": {
+    "title_cn": "Subtitle",
+    "authors_cn": "作者",
+    "affiliations_cn": "单位",
+    "abstract_cn": "摘要",
+    "keywords_cn": "关键词",
+    "classification_cn": "Title",
+    "citation_cn": "Name",
+    "citation_en": "Depart.Correspond.http",
+    "title_en": "Title",
+    "authors_en": "Name",
+    "affiliations_en": "Depart.Correspond.http",
+    "abstract_en": "Abstract",
+    "keywords_en": "Date",
+    "heading_1": "Heading 1",
+    "heading_2": "Heading 2",
+    "heading_3": "Heading 3",
+    "body": "样式1",
+    "ack_heading": "致谢",
+    "reference_heading": "Reference",
+    "reference_cn_appendix_heading": "中文参考文献",
+    "reference_cn_text": "Text of 中文参考文献",
+    "reference_en_text": "Text of Reference 1",
+    "author_bio_text": "Text of 中文参考文献",
+    "appendix_heading": "Heading 1"
+  },
+  "content_order": [
+    {
+      "slot": "title_cn",
+      "style": "Subtitle",
+      "sample": "中文标题"
+    },
+    {
+      "slot": "authors_cn",
+      "style": "作者",
+      "sample": "作者姓名与编号"
+    },
+    {
+      "slot": "affiliations_cn",
+      "style": "单位",
+      "sample": "中文单位与通讯作者信息"
+    },
+    {
+      "slot": "abstract_cn",
+      "style": "摘要",
+      "sample": "摘  要:"
+    },
+    {
+      "slot": "keywords_cn",
+      "style": "关键词",
+      "sample": "关键词:"
+    },
+    {
+      "slot": "classification_cn",
+      "style": "Title",
+      "sample": "中图法分类号:"
+    },
+    {
+      "slot": "citation_cn",
+      "style": "Name",
+      "sample": "中文引用格式:"
+    },
+    {
+      "slot": "citation_en",
+      "style": "Depart.Correspond.http",
+      "sample": "英文引用格式:"
+    },
+    {
+      "slot": "title_en",
+      "style": "Title",
+      "sample": "English Title"
+    },
+    {
+      "slot": "authors_en",
+      "style": "Name",
+      "sample": "ENGLISH AUTHOR NAMES"
+    },
+    {
+      "slot": "affiliations_en",
+      "style": "Depart.Correspond.http",
+      "sample": "English affiliations"
+    },
+    {
+      "slot": "abstract_en",
+      "style": "Abstract",
+      "sample": "Abstract:"
+    },
+    {
+      "slot": "keywords_en",
+      "style": "Date",
+      "sample": "Key words:"
+    },
+    {
+      "slot": "body",
+      "style": "Heading 1 / Heading 2 / Heading 3 / 样式1",
+      "sample": "正文标题与段落"
+    },
+    {
+      "slot": "references",
+      "style": "Reference + Text of Reference 1 / Text of 中文参考文献",
+      "sample": "References"
+    },
+    {
+      "slot": "back_matter",
+      "style": "中文参考文献 + Text of 中文参考文献",
+      "sample": "附中文参考文献 / 作者简介"
+    },
+    {
+      "slot": "appendix",
+      "style": "Heading 1 + 样式1",
+      "sample": "附录"
+    }
+  ],
+  "notes": [
+    "脚本生成正式稿时会清空模板示例正文，但保留模板单栏 sectPr 以及页眉页脚设置；标题前的 4 个固定页首段落会由 jos 适配器回填。",
+    "该模板正文段落优先使用“样式1”；图题、公式编号等更细粒度样式目前仍复用通用 pipeline。",
+    "模板样例中的中文引用格式与英文引用格式可通过可选字段 citation_cn / citation_en 注入。",
+    "模板尾部可通过 back_matter 注入 references_cn 与 author_bios 两类动态块。"
+  ]
+}

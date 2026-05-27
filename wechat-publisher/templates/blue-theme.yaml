@@ -1,0 +1,60 @@
+# 微信公众号排版配置 - 蓝色主题
+# 基于样本 HTML 样式: rgb(36, 91, 219) 蓝色强调
+# 使用方法：python3 scripts/export-to-html.py --note-id <笔记ID> --template blue-theme
+
+# ─────────────────────────────────────────
+# 主题色
+# ─────────────────────────────────────────
+colors:
+  primary:    "rgb(36, 91, 219)"    # 主色：深蓝色（加粗、列表符号、高亮默认色）
+  accent:     "rgb(36, 91, 219)"    # 强调色：蓝色（标题、引用边框、链接）
+  text:       "rgb(31, 35, 41)"     # 正文字色（更深，提高可读性）
+  text_light: "rgb(153, 153, 153)"  # 次要文字（注释、标签）
+  bg_block:   "rgb(245, 245, 245)"  # 引用块背景色（浅灰）
+  border:     "rgb(230, 230, 230)"  # 边框、分隔线颜色
+  quote_border: "rgb(187, 191, 196)" # 引用块左边框颜色
+
+# ─────────────────────────────────────────
+# 字体
+# ─────────────────────────────────────────
+fonts:
+  family:
+    body: "'PingFang SC', -apple-system-font, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', Arial, sans-serif"
+    mono: "'Menlo', 'Monaco', 'Courier New', monospace"
+
+# ─────────────────────────────────────────
+# 字号（px）
+# ─────────────────────────────────────────
+  size:
+    body:     15    # 正文（样本使用 15px）
+    h2:       18    # 一级标题（## 或 #）
+    h3:       16    # 二级标题（###）
+    note:     14    # 注释（~~文字~~）
+    code:     13    # 代码块字号
+    code_inline: 13 # 行内代码字号
+
+# ─────────────────────────────────────────
+# 行距 / 间距
+# ─────────────────────────────────────────
+spacing:
+  line_height_body:  2.0   # 正文行距（样本使用 2em）
+  line_height_head:  1.6   # 标题行距
+  line_height_quote: 1.8   # 引用行距
+  paragraph_gap:     15    # 段落底部间距（px）
+  h2_margin_top:     30    # h2 上间距（px）
+  h3_margin_top:     20    # h3 上间距（px）
+
+# ─────────────────────────────────────────
+# 页面布局
+# ─────────────────────────────────────────
+layout:
+  max_width:   677   # 内容最大宽度（px），677 是公众号推荐宽度
+  padding:     20    # 内容区内边距（px）
+
+# ─────────────────────────────────────────
+# 功能开关
+# ─────────────────────────────────────────
+features:
+  copy_button: true   # 是否显示「复制内容」按钮（仅 Web 端有效，粘贴到公众号后自动消失）
+  flex_columns: true  # 使用 flex 布局实现分栏（替代表格布局）
+  image_caption: true # 启用图片说明标签样式

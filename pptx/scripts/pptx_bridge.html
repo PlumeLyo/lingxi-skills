@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta charset="UTF-8"><title>PPTX Bridge</title></head>
+<body>
+<script type="module">
+  import * as lib from '/index.js';
+  // 将所有导出挂载到 window，供 Playwright evaluate() 调用
+  window.__pptxLib__ = lib;
+  window.__pptxReady__ = true;
+</script>
+</body>
+</html>
