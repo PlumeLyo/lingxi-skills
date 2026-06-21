@@ -1,6 +1,22 @@
 # lingxi-skills
 
-WPS 灵犀（Lingxi）AgentSkill 合集，52 个技能模块，覆盖文档处理、内容创作、知识管理、网页自动化等场景。
+> WPS 灵犀 AgentSkill 合集 — 54 个技能模块，覆盖文档处理、内容创作、知识管理、学习辅助、网页自动化等场景。
+
+个人维护的灵犀技能仓库，持续更新。欢迎 Star 和 Issue。
+
+---
+
+## 快速开始
+
+```powershell
+git clone https://github.com/PlumeLyo/lingxi-skills.git
+cd lingxi-skills
+.\install.ps1 --all
+```
+
+所有技能安装到 `%APPDATA%\WPS 灵犀\serverdir\skills\`，灵犀会自动识别。
+
+## 按需安装
 
 ## 快速安装
 
@@ -64,11 +80,14 @@ cd lingxi-skills
 | [paper-researcher](content/paper-researcher/) | 论文搜索、下载、精读分析 | `.\install.ps1 paper-researcher` |
 | [solar-term-article](content/solar-term-article/) | 二十四节气公众号文案（节气×心理学） | `.\install.ps1 solar-term-article` |
 | [solar-term-illustration](content/solar-term-illustration/) | 二十四节气工笔重彩风格插画 | `.\install.ps1 solar-term-illustration` |
+| [xzsk-publisher](content/xzsk-publisher/) | 彳亍时刻公众号四模板排版（光迹/星光/光境/余温） | `.\install.ps1 xzsk-publisher` |
 
 ### knowledge — 知识与笔记
 
 | 技能 | 说明 | 安装 |
 |------|------|------|
+| [session-sync](knowledge/session-sync/) | 会话收尾七层同步（增量→记忆→知识库→文件分流） | `.\install.ps1 session-sync` |
+| [neat-freak](knowledge/neat-freak/) | 文档整洁+记忆同步，项目里程碑收尾 | `.\install.ps1 neat-freak` |
 | [wps-note](knowledge/wps-note/) | MCP 工具读取、编辑和管理 WPS 笔记 | `.\install.ps1 wps-note` |
 | [wps-knowledgebase](knowledge/wps-knowledgebase/) | WPS 个人知识库操作 | `.\install.ps1 wps-knowledgebase` |
 | [ima-skill](knowledge/ima-skill/) | IMA 知识库笔记和知识文档管理 | `.\install.ps1 ima-skill` |
@@ -134,8 +153,8 @@ cd lingxi-skills
 ```
 lingxi-skills/
 ├── document/        # 文档处理（5）
-├── content/         # 内容创作（10）
-├── knowledge/       # 知识与笔记（10）
+├── content/         # 内容创作（11）
+├── knowledge/       # 知识与笔记（12）
 ├── learning/        # 学习辅助（8）
 ├── inspiration/     # 灵感引擎（5）
 ├── creative/        # 创作工具（6）
@@ -171,6 +190,7 @@ description: "技能描述，用于触发匹配"
 
 ## 维护记录
 
+- **2026-06-21** 新增 session-sync、neat-freak（knowledge）、xzsk-publisher（content），更新 README
 - **2026-05-27** 按分类整理仓库结构（7 个分类目录）
 - **2026-05-27** 初始提交，52 个技能 + 安装脚本
 
