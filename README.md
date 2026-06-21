@@ -14,7 +14,24 @@ cd lingxi-skills
 .\install.ps1 --all
 ```
 
-所有技能安装到 `%APPDATA%\WPS 灵犀\serverdir\skills\`，灵犀会自动识别。
+所有技能安装到灵犀默认目录，灵犀会自动识别。
+
+## 多 Agent 使用
+
+安装脚本支持 `--target` 参数，可将技能安装到任意目录，供其他 Agent 使用：
+
+```powershell
+# 安装到甲纪技能目录
+.\install.ps1 --all --target C:\Users\你的用户名\Desktop\甲纪\skills
+
+# 安装到自定义 Agent 目录
+.\install.ps1 content-creator session-sync --target D:\my-agent\skills
+
+# 只安装某个分类
+.\install.ps1 --cat knowledge --target D:\my-agent\skills
+```
+
+**目标目录逻辑**：`--target` 指定路径 > 灵犀默认路径 > 仓库内 `installed/` 目录。
 
 ## 按需安装
 

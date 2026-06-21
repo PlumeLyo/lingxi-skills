@@ -2,16 +2,15 @@
 .SYNOPSIS
     lingxi-skills 安装脚本（Windows PowerShell）
 .DESCRIPTION
-    将指定技能或全部技能安装到 WPS 灵犀技能目录。
+    将指定技能或全部技能安装到目标目录。
+    默认安装到 WPS 灵犀技能目录，支持 --target 自定义路径供其他 Agent 使用。
 .EXAMPLE
-    .\install.ps1 docx                  # 安装单个技能
-    .\install.ps1 docx pptx xlsx       # 安装多个技能
-    .\install.ps1 --all                 # 安装全部
-    .\install.ps1 --list                # 列出所有可用技能
-    .\install.ps1 --categories           # 列出所有分类
-    .\install.ps1 --cat content          # 安装整个分类
-    .\install.ps1 --uninstall docx      # 卸载指定技能
-    .\install.ps1 --update              # 更新已安装的技能（覆盖）
+    .\install.ps1 docx                              # 安装到灵犀默认目录
+    .\install.ps1 docx --target D:\my-agent\skills  # 安装到自定义目录
+    .\install.ps1 --cat content                      # 安装整个分类
+    .\install.ps1 --all                             # 安装全部
+    .\install.ps1 --list                            # 列出所有可用技能
+    .\install.ps1 --uninstall docx                   # 卸载指定技能
 #>
 
 param(
@@ -23,17 +22,27 @@ param(
     [switch]$Categories,
     [switch]$Uninstall,
     [switch]$Update,
-    [string]$Cat
+    [string]$Cat,
+    [string]$Target
 )
 
 $ErrorActionPreference = "Stop"
 
-$targetDir = Join-Path $env:APPDATA "WPS 灵犀\serverdir\skills"
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-# 分类目录名（排除文件和隐藏目录）
+# 安装目标目录：优先 --target，其次灵犀默认路径
+$defaultDir = Join-Path $env:APPDATA "WPS 灵犀\serverdir\skills"
+$targetDir = if ($Target) { 
+    $Target 
+} elseif (Test-Path $defaultDir) { 
+    $defaultDir 
+} else { 
+    Join-Path $scriptDir "installed"  # fallback：仓库内的 installed/ 目录
+}
+
+# 分类目录名（排除文件和隐藏目录，且自身不含 SKILL.md）
 $catDirs = @(Get-ChildItem -Path $scriptDir -Directory |
-    Where-Object { $_.Name -notin @(".git",".github") -and (Test-Path (Join-Path $_.FullName "SKILL.md")) -eq $false } |
+    Where-Object { $_.Name -notin @(".git",".github","installed") -and (Test-Path (Join-Path $_.FullName "SKILL.md")) -eq $false } |
     Select-Object -ExpandProperty Name)
 
 function Write-OK($msg)    { Write-Host "  [OK] $msg" -ForegroundColor Green }
@@ -41,7 +50,7 @@ function Write-Info($msg)  { Write-Host "  [..] $msg" -ForegroundColor Cyan }
 function Write-Warn($msg)  { Write-Host "  [!!] $msg" -ForegroundColor Yellow }
 function Write-Err($msg)   { Write-Host "  [XX] $msg" -ForegroundColor Red }
 
-# 扫描所有技能：返回 @{ name="xxx"; category="yyy" }
+# 扫描所有技能：返回 @{ name="xxx"; category="yyy"; sourceDir="..." }
 function Get-AvailableSkills {
     $result = @()
     foreach ($cat in $catDirs) {
@@ -88,9 +97,10 @@ if ($List) {
     exit 0
 }
 
-# 验证目标目录
+# 确认目标目录
+Write-Info "安装目标: $targetDir"
 if (-not (Test-Path $targetDir)) {
-    $create = Read-Host "技能目录不存在: $targetDir`n是否创建? (Y/n)"
+    $create = Read-Host "  目录不存在，是否创建? (Y/n)"
     if ($create -ne "n") {
         New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
         Write-OK "已创建 $targetDir"
@@ -108,7 +118,6 @@ $all | ForEach-Object { $skillMap[$_.name] = $_ }
 $skillList = @()
 
 if ($Cat) {
-    # 按分类安装
     if ($catDirs -notcontains $Cat) {
         Write-Err "分类 '$Cat' 不存在"
         Write-Info "可用分类: $($catDirs -join ', ')"
@@ -119,7 +128,6 @@ if ($Cat) {
 } elseif ($All) {
     $skillList = $all
 } else {
-    # 按名称安装
     foreach ($s in $Args2) {
         if ($s.StartsWith("--")) { continue }
         if ($skillMap.ContainsKey($s)) {
@@ -134,14 +142,15 @@ if ($Cat) {
 
 if ($skillList.Count -eq 0) {
     Write-Host "用法：" -ForegroundColor White
-    Write-Host "  .\install.ps1 <技能名>              安装指定技能"
-    Write-Host "  .\install.ps1 <技能1> <技能2>        安装多个技能"
-    Write-Host "  .\install.ps1 --cat <分类名>         安装整个分类"
-    Write-Host "  .\install.ps1 --all                  安装全部技能"
-    Write-Host "  .\install.ps1 --list                 列出所有可用技能"
-    Write-Host "  .\install.ps1 --categories           列出分类及技能"
-    Write-Host "  .\install.ps1 --uninstall <技能>      卸载指定技能"
-    Write-Host "  .\install.ps1 --update               更新已安装技能（覆盖）"
+    Write-Host "  .\install.ps1 <技能名>                           安装到灵犀默认目录"
+    Write-Host "  .\install.ps1 <技能名> --target <目录>             安装到自定义目录"
+    Write-Host "  .\install.ps1 --cat <分类名>                      安装整个分类"
+    Write-Host "  .\install.ps1 --all                              安装全部技能"
+    Write-Host "  .\install.ps1 --all --target <目录>                全部安装到自定义目录"
+    Write-Host "  .\install.ps1 --list                              列出所有可用技能"
+    Write-Host "  .\install.ps1 --categories                        列出分类及技能"
+    Write-Host "  .\install.ps1 --uninstall <技能>                   卸载指定技能"
+    Write-Host "  .\install.ps1 --update <技能>                      更新已安装技能"
     exit 0
 }
 
