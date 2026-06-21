@@ -1,0 +1,44 @@
+{
+  "spec_family": "docx-report-spec-v1",
+  "title_cn": "",
+  "authors_cn": [],
+  "affiliations_cn": [],
+  "abstract_cn": "",
+  "keywords_cn": [],
+  "classification_cn": "",
+  "received_date": "",
+  "revised_date": "",
+  "corresponding_author": "",
+  "funding_cn": "",
+  "title_en": "",
+  "authors_en": [],
+  "affiliations_en": [],
+  "abstract_en": "",
+  "keywords_en": [],
+  "funding_en": "",
+  "sections": [
+    {
+      "level": 1,
+      "title": "1 引言",
+      "paragraphs": [
+        "",
+        ""
+      ],
+      "subsections": [
+        {
+          "level": 2,
+          "title": "1.1 子节标题",
+          "paragraphs": [
+            ""
+          ]
+        }
+      ]
+    }
+  ],
+  "acknowledgements": "",
+  "references": [
+    ""
+  ],
+  "back_matter": [],
+  "appendices": []
+}

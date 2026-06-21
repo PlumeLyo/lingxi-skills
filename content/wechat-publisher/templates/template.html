@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f5f5f5;">
+
+<!-- 公众号内容区域：max-width 677px 对应微信编辑器宽度 -->
+<section id="mp-section" style="max-width: 677px; margin: 0 auto; background-color: #fff; padding: 20px; font-family: mp-quote, 'PingFang SC', -apple-system-font, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', Arial, sans-serif;">
+
+{{ content }}
+
+</section>
+
+<!-- 复制按钮（Web 预览用，粘贴到公众号后自动消失） -->
+<div id="copy-bar" style="position: fixed; bottom: 24px; right: 24px; z-index: 9999;">
+  <button id="copy-btn" onclick="copyContent()" style="
+    background: rgb(0, 128, 255);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: 'PingFang SC', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,128,255,0.35);
+    transition: all 0.2s;
+  ">复制内容</button>
+</div>
+
+<script>
+function copyContent() {
+  const section = document.getElementById('mp-section');
+  const btn = document.getElementById('copy-btn');
+  const range = document.createRange();
+  range.selectNode(section);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  try {
+    document.execCommand('copy');
+    btn.textContent = '✓ 已复制';
+    btn.style.background = 'rgb(7, 134, 84)';
+    setTimeout(() => {
+      btn.textContent = '复制内容';
+      btn.style.background = 'rgb(0, 128, 255)';
+    }, 2000);
+  } catch(e) {
+    btn.textContent = '复制失败，请手动选择';
+    btn.style.background = 'rgb(194, 28, 19)';
+  }
+  sel.removeAllRanges();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{TITLE}}</title>
+    <style>
+      :root {
+        --page-width: 860px;
+        --ink: #111111;
+        --muted: #555555;
+        --rule: #cfcfcf;
+        --accent: #222222;
+        --paper: #ffffff;
+        --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+        --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--serif);
+      }
+
+      .paper {
+        width: min(var(--page-width), calc(100vw - 48px));
+        margin: 36px auto 64px;
+      }
+
+      .title-block {
+        margin-bottom: 28px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 30px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .meta {
+        color: var(--muted);
+        font: 500 14px/1.8 var(--sans);
+      }
+
+      .meta span + span::before {
+        content: " | ";
+      }
+
+      section {
+        margin-top: 28px;
+      }
+
+      h2 {
+        margin: 0 0 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--rule);
+        font-size: 22px;
+        line-height: 1.4;
+        font-weight: 700;
+      }
+
+      h3 {
+        margin: 22px 0 10px;
+        font-size: 18px;
+        line-height: 1.45;
+        font-weight: 700;
+      }
+
+      p,
+      li,
+      blockquote {
+        margin: 0 0 14px;
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .abstract,
+      .keywords {
+        margin-bottom: 14px;
+      }
+
+      .keywords {
+        color: var(--muted);
+        font: 500 14px/1.8 var(--sans);
+      }
+
+      blockquote {
+        padding-left: 14px;
+        border-left: 3px solid #999999;
+        color: #303030;
+      }
+
+      ul,
+      ol {
+        margin: 0 0 14px 22px;
+        padding: 0;
+      }
+
+      table {
+        width: 100%;
+        margin: 18px 0 22px;
+        border-collapse: collapse;
+        font-size: 15px;
+      }
+
+      th,
+      td {
+        padding: 8px 10px;
+        border: 1px solid var(--rule);
+        vertical-align: top;
+        text-align: left;
+      }
+
+      th {
+        font-family: var(--sans);
+        font-weight: 600;
+        background: #f7f7f7;
+      }
+
+      .citation a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .references {
+        margin-left: 20px;
+        padding-left: 0;
+      }
+
+      .references li {
+        margin-bottom: 10px;
+      }
+
+      .footer {
+        margin-top: 36px;
+        padding-top: 14px;
+        border-top: 1px solid var(--rule);
+        color: var(--muted);
+        font: 13px/1.7 var(--sans);
+      }
+
+      @media (max-width: 760px) {
+        .paper {
+          width: calc(100vw - 28px);
+          margin: 20px auto 40px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        p,
+        li,
+        blockquote {
+          font-size: 15px;
+        }
+      }
+
+      @media print {
+        .paper {
+          width: auto;
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="paper">
+      <header class="title-block">
+        <h1>{{TITLE}}</h1>
+        <p class="subtitle">{{SUBTITLE}}</p>
+        <p class="meta">
+          <span>{{AUTHOR}}</span>
+          <span>{{DATE}}</span>
+          <span>{{DOCUMENT_TYPE}}</span>
+        </p>
+      </header>
+
+      <section aria-labelledby="abstract-title">
+        <h2 id="abstract-title">摘要</h2>
+        <p class="abstract">{{ABSTRACT}}</p>
+        <p class="keywords"><strong>关键词：</strong>{{KEYWORDS}}</p>
+      </section>
+
+      <section aria-labelledby="intro-title">
+        <h2 id="intro-title">{{SECTION_1_TITLE}}</h2>
+        <p>{{SECTION_1_PARAGRAPH}}</p>
+        <p>{{SECTION_1_PARAGRAPH_2}} <sup class="citation"><a href="#ref-1">[1]</a></sup></p>
+      </section>
+
+      <section aria-labelledby="body-title">
+        <h2 id="body-title">{{SECTION_2_TITLE}}</h2>
+        <p>{{SECTION_2_PARAGRAPH}}</p>
+        <p>{{SECTION_2_PARAGRAPH_2}} <sup class="citation"><a href="#ref-2">[2]</a></sup></p>
+      </section>
+
+      <section aria-labelledby="discussion-title">
+        <h2 id="discussion-title">讨论</h2>
+        <p>{{DISCUSSION}}</p>
+      </section>
+
+      <section aria-labelledby="conclusion-title">
+        <h2 id="conclusion-title">结论</h2>
+        <p>{{CONCLUSION}}</p>
+      </section>
+
+      <section aria-labelledby="refs-title">
+        <h2 id="refs-title">参考文献</h2>
+        <ol class="references">
+          <li id="ref-1">{{REFERENCE_1}}</li>
+          <li id="ref-2">{{REFERENCE_2}}</li>
+          <li id="ref-3">{{REFERENCE_3}}</li>
+        </ol>
+      </section>
+
+      <footer class="footer">
+        <p>{{FOOTER_NOTE}}</p>
+      </footer>
+    </article>
+  </body>
+</html>
