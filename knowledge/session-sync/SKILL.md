@@ -2,13 +2,14 @@
 name: session-sync
 description: >
   甲纪版会话收尾·六层同步：增量记忆→Scratchpad路由→共享记忆(agent-memory)→Dream→Distill→产出归位。
-  适配多Agent（千问办公/Codex/灵犀/MiMo），共享记忆用 agent-memory 四文件（identity/status/decisions/evolution）。
+  适配多Agent（千问办公/Codex/灵犀/MiMo/Qoder），共享记忆是 agent-memory/ 下 14 份档案
+  （core 五份 identity/status/decisions/evolution/methodologies + 索引 memory-sync-index + 8 份主题档案）。
   触发词：/sync、收尾、同步一下、整理一下、梳理一下、会话结束。
 ---
 
-# 会话收尾·六层同步（v7）
+# 会话收尾·六层同步（v8）
 
-> 对齐甲纪 AGENTS.md（2026-08-30 定型）。**共享记忆已由单文件 `agent-shared-memory.md` 拆分为 `agent-memory/` 四文件，收尾不再写旧单文件。** 作品集路径为 `D:\WorkFiles\作品集`（不再使用 `Desktop\work\`）。
+> 对齐甲纪 AGENTS.md（2026-09-16 更新：Qoder 接入 + 时间线一致性规范）。**共享记忆是 `agent-memory/` 档案集（14 份），旧单文件 `agent-shared-memory.md` 已废弃**；进入前先读 `agent-memory\memory-sync-index.md` 判断落点与版本。作品集路径为 `D:\WorkFiles\作品集`（不再使用 `Desktop\work\`）。
 
 ## 路径速查
 
@@ -37,9 +38,15 @@ description: >
 
 ### 3. 共享记忆·决策日志（agent-memory）
 
-读取 `agent-memory\decisions.md`，新增一行：`| MMDD | Agent名 | 变更摘要 |`（≤30字）。
-任务状态有变更 → 更新 `agent-memory\status.md` 对应任务行。
-**不再写 `agent-shared-memory.md`。**
+先读 `agent-memory\memory-sync-index.md` 判断落点，再写：
+
+- `decisions.md` 新增一行，**四列**：`| YYYY-MM-DD | Agent标识 | 决策内容 | 详情 |`（内容 ≤30字，细节进详情列）
+- `status.md` 任务状态有变更 → 同格式更新/新增对应任务行
+- 行只能加在**表格末尾**（表头下方插行会打断表格），表内不留空行，行内 `|` 写成 `\|`
+- 事后补记用事件发生日，不写成今天；改完把该文件的**头部 `> 最后更新：` 与 EOF `> 最后更新: … by …` 两处**一并刷成今天 + 自己标识
+- 不新建同义文件（新主题先看已有档案能否承载）
+- **不再写 `agent-shared-memory.md`**（已废弃；若被同步带回，只读不回写）
+- 私有记忆同步：本次若改了跨 Agent 事实，同时更新自己的私有记忆（工作副本）；只对自己的工具坑有用、不牵涉他人的，留在私有记忆不外溢
 
 ### 4. Dream（≥7天触发）
 
@@ -76,7 +83,8 @@ description: >
 
 ## 规则
 - 顺序执行，失败静默跳过
-- **共享记忆只写 `agent-memory/` 四文件，不再写 `agent-shared-memory.md`**
+- **共享记忆只写 `agent-memory/` 档案集（14 份），不再写 `agent-shared-memory.md`**
+- 时间线/追加/时间戳的机械规则以甲纪 `AGENTS.md`「时间线一致性」为准，本 skill 不复述细节以免两处漂移
 - 产出只写 inbox，不自行归位到作品集/OB
 - 各 Agent 按自身能力选择写入方式，本 skill 只定义"做什么"不绑定"用什么工具"
 - Dream/Distill 不阻塞其他步骤，超时则跳过
