@@ -7,7 +7,7 @@ description: >
   触发词：/sync、收尾、同步一下、整理一下、梳理一下、会话结束。
 ---
 
-# 会话收尾·六层同步（v8）
+# 会话收尾·六层同步（v8.1）
 
 > 对齐甲纪 AGENTS.md（2026-09-16 更新：Qoder 接入 + 时间线一致性规范）。**共享记忆是 `agent-memory/` 档案集（14 份），旧单文件 `agent-shared-memory.md` 已废弃**；进入前先读 `agent-memory\memory-sync-index.md` 判断落点与版本。作品集路径为 `D:\WorkFiles\作品集`（不再使用 `Desktop\work\`）。
 
@@ -60,12 +60,20 @@ description: >
 - 间隔 < 30天 → 跳过
 - 间隔 ≥ 30天 → 扫描近30天重复 ≥3 次的操作 → 建议固化为 skill/规则/SOP，产出建议清单交用户确认，不自动创建。结果追加到 `decisions.md`。≤5分钟，超时跳过。
 
-### 6. 产出归位（写 inbox）
+### 6. 产出归位（inbox + 心跳归位）
 
-新架构下 Agent 产出**统一写入 inbox**（`C:\Users\羽涅\Desktop\甲纪\output\_inbox\`），命名 `日期-Agent标识-描述.扩展名`，由 harness 自动归位到作品集/OB，Agent 不需自行归档。
+新架构下 Agent 产出**统一写入 inbox**（`C:\Users\羽涅\Desktop\甲纪\output\_inbox\`），命名 `日期-Agent标识-描述.扩展名`，由 `core/inbox.py` 自动路由到作品集/OB，Agent 不自行手工拷贝。
+
+**心跳（必做）**：写完 inbox 后立即执行 `cd C:\Users\羽涅\Desktop\甲纪 && python run.py inbox`（失败静默跳过）。inbox 只写不路由=管道堵塞（曾积压 4 个月 12 件）。
+
+路由规则要点（1008 起内置于 inbox.py，Agent 只需按命名规范投件）：
+- 敏感求职/薪酬件（简历/求职/职业规划/面试/offer/薪酬/薪资）→ 自动进工作机密库，**绝不落个人库**（个人库 remotely-save 公网同步）
+- 文件名含"天地时空图志" → `04-节气内容/天地时空图志/`；含节气名 → `04-节气内容/`
+- 目标已存在同名 → FAIL 留 inbox 人工判重，勿绕过
+- 未知类型（zip 等）自动移 `output/_hold/` 暂存，收尾时提醒用户清理
 
 - 作品集最终目标：`D:\WorkFiles\作品集\`
-- Obsidian 模块映射：`0-记忆档案/` `3-学习笔记/` `4-内容创作模块/彳亍时刻/` `4-内容创作模块/屋托邦指南/` `5-知识库模块/` `6-个人成长模块/`
+- Obsidian 模块映射（对齐 2026-10 实际目录）：`0-记忆档案/` `1-人生项目模块/` `2-读书成长模块/` `3-思维训练模块/` `4-内容创作模块/彳亍时刻|屋托邦指南|创作方法论/` `5-AI与方法论/` `6-审美与表达/`
 
 无新产出则跳过。
 
@@ -78,14 +86,14 @@ description: >
 3. 决策日志（agent-memory/decisions.md）：+N 条
 4. Dream：xxx（或跳过）
 5. Distill：xxx（或跳过）
-6. 产出：写 inbox xxx（或无）
+6. 产出：inbox 投件 x 个，心跳归位 x 成功/x 失败（_hold x）（或无）
 ```
 
 ## 规则
 - 顺序执行，失败静默跳过
 - **共享记忆只写 `agent-memory/` 档案集（14 份），不再写 `agent-shared-memory.md`**
 - 时间线/追加/时间戳的机械规则以甲纪 `AGENTS.md`「时间线一致性」为准，本 skill 不复述细节以免两处漂移
-- 产出只写 inbox，不自行归位到作品集/OB
+- 产出只写 inbox 并立即跑心跳归位（`python run.py inbox`），不手工拷贝到作品集/OB；例外：系列成品跟随先例目录的成组文件（如排版源 md+html 同目录互引）可直写目标目录，但须在决策日志注明
 - 各 Agent 按自身能力选择写入方式，本 skill 只定义"做什么"不绑定"用什么工具"
 - Dream/Distill 不阻塞其他步骤，超时则跳过
 - 增量写入遵循"不动>少动>轻动"：明确信号立即写，模糊信号先入日志
