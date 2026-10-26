@@ -6,12 +6,12 @@ description: |
   触发词："彳亍排版""公众号排版""排个版""排版发布"。
   核心能力：读取润色版.md → 按板块品牌规范排版 → 输出可直接粘贴的 HTML。
 metadata:
-  version: "2.3.0"
+  version: "2.4.0"
   category: publishing
   tags: [wechat, xzsk, html-export, publishing, four-sections]
 ---
 
-# 彳亍时刻公众号排版技能（v2.3 四模板版）
+# 彳亍时刻公众号排版技能（v2.4 四模板版）
 
 将润色版 Markdown 文章按彳亍时刻品牌规范转为公众号 HTML。
 基于品牌完整方案的颜色系统，四个模板使用完全不同的配色、字体和排版参数。
@@ -117,7 +117,7 @@ result = xzsk_publish(
 
 ## 资源依赖
 
-1. logo 路径：`C:\Users\羽涅\Desktop\内容创作\素材库\logo\logo无背景1.png`
+1. logo 路径：读全局配置 `paths.logo_xzsk`（各机不同，见 config.local.yaml）
 2. 颜色来源：品牌完整方案颜色系统（v1.0 / 2026-05-27）
 3. 排版规范来源：品牌完整方案 6.2 公众号排版速查
 4. 所有样式内联，不使用 class/flex/grid/rgba/CSS变量
